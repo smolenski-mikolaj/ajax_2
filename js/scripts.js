@@ -8,27 +8,29 @@ $(function(){
 	}
 
 	function createTweet(input) {
-		var data = input[0];
+		if (input instanceof Array) {
+			var data = input[0];
+			
+			var quoteText = $(data.content).text().trim();
+			var quoteAuthor = data.title;
 
-		var quoteText = $(data.content).text().trim();
-		var quoteAuthor = data.title;
-
-		if (!quoteAuthor.length) {
-			quoteAuthor = "Nieznany autor";
-		}
-		
-		var tweetText = "Cytat dnia - " + quoteText + " Autor: " + quoteAuthor;
-		
-		if (tweetText.length > 140) {
-			getQuote();
-		} else {
-			var tweet = tweetLink + encodeURIComponent(tweetText);
-			$('.quote').text(quoteText);
-			$('.author').text("Autor: " + quoteAuthor);
+			if (!quoteAuthor.length) {
+				quoteAuthor = "Nieznany autor";
+			}
+			
+			var tweetText = "Cytat dnia - " + quoteText + " Autor: " + quoteAuthor;
+			
+			if (tweetText.length > 140) {
+				getQuote();
+			} else {
+				var tweet = tweetLink + encodeURIComponent(tweetText);
+				$('.quote').text(quoteText);
+				$('.author').text("Autor: " + quoteAuthor);
+				$('.tweet').attr('href', tweet);
+			}
+			
 			$('.tweet').attr('href', tweet);
 		}
-		
-		$('.tweet').attr('href', tweet);
 	}
 
 	$(document).ready(function() {

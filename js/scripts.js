@@ -8,7 +8,7 @@ $(function(){
 	}
 
 	function createTweet(input) {
-		if (input.lenght) { 
+		if (input.length) { 
 			var data = input[0];
 			
 			var quoteText = $(data.content).text().trim();
